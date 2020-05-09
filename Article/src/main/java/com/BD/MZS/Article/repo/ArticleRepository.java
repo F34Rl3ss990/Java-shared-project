@@ -7,4 +7,8 @@ import java.util.List;
 public interface ArticleRepository {
     void save(ArticleDTO articleDTO);
     List<ArticleDTO> getAll();
+    void deleteByID(int isbn);
+    ArticleDTO getByID(int isbn);
+    void modByID(ArticleDTO articleDTO);
+
 }

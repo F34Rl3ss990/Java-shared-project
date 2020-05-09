@@ -23,4 +23,19 @@ public class ArticleServiceImpl implements ArticleService {
     public List<ArticleDTO> listAll() {
         return articleRepository.getAll();
     }
+
+    @Override
+    public void deleteByID(int isbn) {
+        articleRepository.deleteByID(isbn);
+    }
+
+    @Override
+    public ArticleDTO getByID(int isbn) {
+       return articleRepository.getByID(isbn);
+    }
+
+    @Override
+    public void modByID(ArticleDTO articleDTO) {
+            articleRepository.modByID(articleDTO);
+    }
 }

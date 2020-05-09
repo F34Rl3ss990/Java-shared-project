@@ -13,4 +13,5 @@ public class ArticleController {
     public void setEntityService(ArticleService articleService) {
         this.articleService = articleService;
     }
+
 }
