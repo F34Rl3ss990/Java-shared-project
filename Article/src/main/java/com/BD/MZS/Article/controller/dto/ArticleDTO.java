@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -13,15 +14,15 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticleDTO {
-    @NotBlank
+    @NotNull(message = "Name cannot be null.")
     private String Author;
-    @NotBlank
+    @NotNull(message = "Title cannot be null.")
     private String Title;
     @NotBlank
     private Date dateOfCreate;
     @NotBlank
     private Date dateOfModify;
-    @NotBlank
+    @NotNull(message = "Article cannot be null.")
     private String Article;
     @NotBlank
     private static int ISBN=0;
