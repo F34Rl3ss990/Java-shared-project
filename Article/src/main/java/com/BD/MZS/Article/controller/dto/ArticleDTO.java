@@ -37,4 +37,5 @@ public class ArticleDTO {
         return ISBN;
     }
 
+
 }

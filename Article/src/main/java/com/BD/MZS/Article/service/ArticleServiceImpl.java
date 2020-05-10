@@ -38,4 +38,32 @@ public class ArticleServiceImpl implements ArticleService {
     public void modByID(ArticleDTO articleDTO) {
             articleRepository.modByID(articleDTO);
     }
+    @Override
+    public List<ArticleDTO> getAllSortedByArticle(){
+       return articleRepository.getAllSortedByArticle();
+    }
+    @Override
+    public List<ArticleDTO> getAllSortedByAuthor(){
+       return articleRepository.getAllSortedByAuthor();
+    }
+    @Override
+    public List<ArticleDTO> getAllSortedByDateOfCreate(){
+       return articleRepository.getAllSortedByDateOfCreate();
+    }
+    @Override
+    public List<ArticleDTO> getAllSortedByDateOfModify(){
+       return articleRepository.getAllSortedByDateOfModify();
+    }
+    @Override
+    public List<ArticleDTO> getAllSortedByISBN(){
+       return articleRepository.getAllSortedByISBN();
+    }
+    @Override
+    public List<ArticleDTO> getAllSortedByTitle(){
+      return articleRepository.getAllSortedByTitle();
+    }
+    @Override
+    public List<ArticleDTO> search(String searchField){
+      return  articleRepository.search(searchField);
+    }
 }

@@ -10,4 +10,11 @@ public interface ArticleService {
     void deleteByID(int isbn);
     ArticleDTO getByID(int isbn);
     void modByID(ArticleDTO articleDTO);
+    List<ArticleDTO> getAllSortedByArticle();
+    List<ArticleDTO> getAllSortedByAuthor();
+    List<ArticleDTO> getAllSortedByDateOfCreate();
+    List<ArticleDTO> getAllSortedByDateOfModify();
+    List<ArticleDTO> getAllSortedByISBN();
+    List<ArticleDTO> getAllSortedByTitle();
+    List<ArticleDTO> search(String searchField);
 }
