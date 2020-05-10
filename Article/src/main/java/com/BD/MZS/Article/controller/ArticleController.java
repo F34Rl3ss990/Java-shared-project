@@ -33,9 +33,20 @@ public class ArticleController {
     }
 
     @GetMapping(value = "/GetArticle")
-    public ModelAndView getListed(@RequestParam(value="age", required=false, defaultValue="5") String age, Model model){
+    public ModelAndView getListed(@RequestParam(value="title", required=false, defaultValue="anyád") String title, Model model,
+                                  @RequestParam(value = "article", required = false, defaultValue = "LOREMFASZ") String article,
+                                  @RequestParam(value = "author", required = false, defaultValue = "anyám") String author,
+                                  @RequestParam(value = "isbn", required = false, defaultValue = "4") String isbn,
+                                  @RequestParam(value = "created", required = false, defaultValue = "1000.01.01") String created,
+                                  @RequestParam(value = "lmodif", required = false, defaultValue = "2000.02.02") String lmodif) {
+
         ModelAndView mav = new ModelAndView();
-        model.addAttribute("age", age);
+        model.addAttribute("title", title);
+        model.addAttribute("article", article);
+        model.addAttribute("author", author);
+        model.addAttribute("isbn", isbn);
+        model.addAttribute("created", created);
+        model.addAttribute("lmodif", lmodif);
         mav.setViewName("GetArticle");
         return mav;
     }
