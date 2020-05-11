@@ -1,9 +1,6 @@
 package com.BD.MZS.Article.controller.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
@@ -19,9 +16,9 @@ public class ArticleDTO {
     private String Author;
     @NotNull(message = "Title cannot be null.")
     private String Title;
-
-    private Date dateOfCreate;
-
+    @Setter
+    private Date dateOfCreate=dateCreate;
+    @Setter
     private Date dateOfModify;
 
     @NotNull(message = "Article cannot be null.")
@@ -34,8 +31,10 @@ public class ArticleDTO {
     }
     public ArticleDTO(){
         this.dateOfModify = new Date();
-        this.dateOfCreate = new Date();
     }
-
+    private static Date dateCreate;
+    public static Date setDateofCreate(Date date){
+        return dateCreate= date;
+    }
 
 }

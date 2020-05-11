@@ -17,7 +17,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
     @PostConstruct
     public void init() {
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(2).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(0).build());
     }
 
     @Override
@@ -47,8 +47,9 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     public void modByID(ArticleDTO articleDTO){
         for(ArticleDTO article : articles){
             if(article.getISBN() == articleDTO.getISBN()){
-                article.setDateOfModify(new Date());
                 article.setArticle(articleDTO.getArticle());
+                article.setAuthor(articleDTO.getAuthor());
+                article.setTitle(articleDTO.getTitle());
             }
         }
     }
