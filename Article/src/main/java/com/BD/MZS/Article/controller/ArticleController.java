@@ -32,6 +32,24 @@ public class ArticleController {
         return mav;
     }
 
+    @GetMapping(value = "/AddArticle")
+    public ModelAndView showForm() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("AddArticle");
+        mav.addObject("ArticleDTO", new ArticleDTO());
+        return mav;
+    }
+    @PostMapping(value ="/AddArticle")
+    public ModelAndView AddArticle(@Valid ArticleDTO articleDTO,
+                                   BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return new ModelAndView("AddArticle");
+        }
+        System.out.println(articleDTO);
+        articleService.add(articleDTO);
+    return new ModelAndView("redirect:/GetArticle");
+    }
+
     @GetMapping(value = "/GetArticle")
     public ModelAndView getListed(@RequestParam(value="title", required=false, defaultValue="anyád") String title, Model model,
                                   @RequestParam(value = "article", required = false, defaultValue = "LOREMFASZ") String article,
@@ -50,10 +68,6 @@ public class ArticleController {
         mav.setViewName("GetArticle");
         return mav;
     }
-/*
-    @PostMapping(value ="/")
-    public ModelAndView AddArticle(@Valid ArticleDTO articleDTO,
-                                   BindingResult bindingResult){
 
-    }*/
+
 }

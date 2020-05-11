@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -44,9 +44,9 @@
         </ul>
     </div>
 </nav>
-<form>
-    <table border="1">
-
+<div class="container">
+    <table class="table table-hover">
+        <thead>
             <tr>
                 <th>Title</th>
                 <th>Article</th>
@@ -55,17 +55,18 @@
                 <th>Created</th>
                 <th>Last modified</th>
             </tr>
+        </thead>
+        <tbody>
             <tr>
-                <td th:text="${title}"> Title </td>
-                <td th:text="${article}"> Article </td>
-                <td th:text="${author}"> Author </td>
-                <td th:text="${isbn}"> ISBN </td>
-                <td th:text="${created}"> Created </td>
-                <td th:text="${lmodif}"> Last modified </td>
+                <td th:text="${title}">  </td>
+                <td th:text="${article}">  </td>
+                <td th:text="${author}">  </td>
+                <td th:text="${isbn}">  </td>
+                <td th:text="${created}">  </td>
+                <td th:text="${lmodif}">   </td>
             </tr>
-
-
+        </tbody>
     </table>
-</form>
+</div>
 </body>
 </html>
