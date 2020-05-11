@@ -59,14 +59,12 @@ public class ArticleController {
         mav.addObject("Articles", articleService.listAll());
         return mav;
     }
-    /*@PostMapping(value="/fasz")
-    public ModelAndView postArticles(ArticleDTO articleDTO){
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("ModifyArticle");
-        mav.addObject("articleDTO");
-        return mav;
+    @PostMapping(value="/GetArticle")
+    public ModelAndView postArticles(@RequestParam(value="ISBN") int ISBN){
+        System.out.println("rák");
+        return new ModelAndView("redirect:/ModifyArticle");
     }
-    */
+
 
     /*@GetMapping(value = "/GetArticle")
     public ModelAndView getListed(@RequestParam(value="title", required=false, defaultValue="anyád") String title, Model model,
