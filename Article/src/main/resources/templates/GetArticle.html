@@ -48,23 +48,25 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Article</th>
                 <th>Author</th>
                 <th>ISBN</th>
+                <th>Title</th>
                 <th>Created</th>
                 <th>Last modified</th>
+                <th colspan="2">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td th:text="${title}">  </td>
-                <td th:text="${article}">  </td>
-                <td th:text="${author}">  </td>
-                <td th:text="${isbn}">  </td>
-                <td th:text="${created}">  </td>
-                <td th:text="${lmodif}">   </td>
+        <form class="" action="" method="post" th:object="${ArticleDTO}">
+            <tr th:each="article: ${Articles}">
+                <td th:text="${article.Author}">  </td>
+                <td th:text="${article.ISBN}">  </td>
+                <td th:text="${article.Title}">  </td>
+                <td th:text="${#dates.format(article.dateOfCreate, 'yyyy-MM-dd')}">  </td>
+                <td th:text="${#dates.format(article.dateOfModify, 'yyyy-MM-dd')}">  </td>
+               <!-- <td><button type="submit" th:action="@{/fasz}" name="action" value="" class="btn btn-primary">faszkalács</button></td></t>-->
             </tr>
+        </form>
         </tbody>
     </table>
 </div>

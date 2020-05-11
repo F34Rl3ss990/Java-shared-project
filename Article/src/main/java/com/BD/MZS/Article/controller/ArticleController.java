@@ -52,8 +52,23 @@ public class ArticleController {
         articleService.add(articleDTO);
     return new ModelAndView("redirect:/GetArticle");
     }
+    @GetMapping(value="/GetArticle")
+    public ModelAndView getArticles(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("GetArticle");
+        mav.addObject("Articles", articleService.listAll());
+        return mav;
+    }
+    /*@PostMapping(value="/fasz")
+    public ModelAndView postArticles(ArticleDTO articleDTO){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("ModifyArticle");
+        mav.addObject("articleDTO");
+        return mav;
+    }
+    */
 
-    @GetMapping(value = "/GetArticle")
+    /*@GetMapping(value = "/GetArticle")
     public ModelAndView getListed(@RequestParam(value="title", required=false, defaultValue="anyád") String title, Model model,
                                   @RequestParam(value = "article", required = false, defaultValue = "LOREMFASZ") String article,
                                   @RequestParam(value = "author", required = false, defaultValue = "anyám") String author,
@@ -70,7 +85,7 @@ public class ArticleController {
         model.addAttribute("lmodif", lmodif);
         mav.setViewName("GetArticle");
         return mav;
-    }
+    }*/
 
 
 }
