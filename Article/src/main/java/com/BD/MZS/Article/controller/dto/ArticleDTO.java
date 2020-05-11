@@ -1,44 +1,40 @@
 package com.BD.MZS.Article.controller.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class ArticleDTO {
     @NotNull(message = "Name cannot be null.")
     private String Author;
     @NotNull(message = "Title cannot be null.")
     private String Title;
-    @NotBlank
-    private Date dateOfCreate;
-    @NotBlank
+    @Setter
+    private Date dateOfCreate=dateCreate;
+    @Setter
     private Date dateOfModify;
+
     @NotNull(message = "Article cannot be null.")
     private String Article;
-    @NotBlank
-    private static int ISBN=0;
 
-    public ArticleDTO(String Author, String Title, String Article){
-        this.Author = Author;
-        this.Title = Title;
-        this.dateOfCreate = new Date();
+    private int ISBN=counter;
+    private static int counter=0;
+    public static void counter(){
+        counter++;
+    }
+    public ArticleDTO(){
         this.dateOfModify = new Date();
-        this.Article = Article;
-        this.ISBN +=1;
     }
-
-    public int getISBN(){
-        return ISBN;
+    private static Date dateCreate;
+    public static Date setDateofCreate(Date date){
+        return dateCreate= date;
     }
-
 
 }

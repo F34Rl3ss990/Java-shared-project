@@ -3,6 +3,7 @@ package com.BD.MZS.Article.repo;
 import com.BD.MZS.Article.controller.dto.ArticleDTO;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -13,9 +14,16 @@ import java.util.stream.Collectors;
 @Component
 public class ArticleRepositoryImpl implements ArticleRepository {
     private final List<ArticleDTO> articles = new ArrayList<>();
+
+    @PostConstruct
+    public void init() {
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(0).build());
+    }
+
     @Override
     public List<ArticleDTO> getAll() {
         articles.sort(Comparator.comparing(ArticleDTO::getDateOfCreate));
+        System.out.println(articles);
         return articles;
     }
     @Override
@@ -39,15 +47,18 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     public void modByID(ArticleDTO articleDTO){
         for(ArticleDTO article : articles){
             if(article.getISBN() == articleDTO.getISBN()){
-                article.setDateOfModify(new Date());
                 article.setArticle(articleDTO.getArticle());
+                article.setAuthor(articleDTO.getAuthor());
+                article.setTitle(articleDTO.getTitle());
             }
         }
     }
 
     @Override
     public void save(ArticleDTO articleDTO) {
+        System.out.println(articles);
         articles.add(articleDTO);
+        System.out.println(articles);
     }
 
     private List<ArticleDTO> getArticleDTOS(Comparator<ArticleDTO> comparing) {
