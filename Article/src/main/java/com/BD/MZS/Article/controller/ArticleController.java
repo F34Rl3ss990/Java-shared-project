@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 public class ArticleController {
@@ -37,6 +38,8 @@ public class ArticleController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("AddArticle");
         mav.addObject("ArticleDTO", new ArticleDTO());
+        ArticleDTO.counter();
+
         return mav;
     }
     @PostMapping(value ="/AddArticle")

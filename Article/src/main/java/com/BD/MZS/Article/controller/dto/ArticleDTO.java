@@ -6,12 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Data
 @Builder
-@NoArgsConstructor
-
+@AllArgsConstructor
 public class ArticleDTO {
     @NotNull(message = "Name cannot be null.")
     private String Author;
@@ -25,23 +27,15 @@ public class ArticleDTO {
     @NotNull(message = "Article cannot be null.")
     private String Article;
 
-    private int ISBN=0;
+    private int ISBN=counter;
+    private static int counter=0;
+    public static void counter(){
+        counter++;
+    }
+    public ArticleDTO(){
+        this.dateOfModify = new Date();
+        this.dateOfCreate = new Date();
+    }
 
-  public ArticleDTO(String Author, String Title, String Article){
-        this.Author = Author;
-        this.Title = Title;
-        this.dateOfCreate = new Date();
-        this.dateOfModify = new Date();
-        this.Article = Article;
-        this.ISBN++;
-    }
-    public ArticleDTO(String author, String Title,  Date dateOfModify, Date dateOfCreate, String Article, int ISBN){
-        this.Author = author;
-        this.Title = Title;
-        this.dateOfCreate = new Date();
-        this.dateOfModify = new Date();
-        this.Article = Article;
-        this.ISBN++;
-    }
 
 }
