@@ -43,6 +43,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
                 System.out.println(articles);
                 articles.remove(article);
                 System.out.println(articles);
+                break;
             }
         }
     }

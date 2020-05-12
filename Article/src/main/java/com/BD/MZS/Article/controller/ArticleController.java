@@ -66,7 +66,9 @@ public class ArticleController {
     public ModelAndView postArticlez(@RequestParam(value="ISBN") int ISBN){
         articleService.deleteByID(ISBN);
         System.out.println("asdasdas");
-        return new ModelAndView("redirect:/");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("MainArticle");
+        return mav;
 
     }
     @GetMapping(value="/ModifyArticle{ISBN}")
