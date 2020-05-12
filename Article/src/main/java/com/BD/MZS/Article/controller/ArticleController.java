@@ -63,11 +63,20 @@ public class ArticleController {
     }
 
     @GetMapping(value="/GetArticle/Delete{ISBN}")
-    public ModelAndView postArticlez(@RequestParam(value="ISBN") int ISBN){
+    public ModelAndView deleteArticle(@RequestParam(value="ISBN") int ISBN){
         articleService.deleteByID(ISBN);
         System.out.println("asdasdas");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("MainArticle");
+        return mav;
+
+    }
+    @GetMapping(value="/GetArticle/Open{ISBN}")
+    public ModelAndView openArticle(@RequestParam(value="ISBN") int ISBN){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("article",articleService.getByID(ISBN));
+        System.out.println(articleService.getByID(ISBN));
+        mav.setViewName("OpenArticle");
         return mav;
 
     }

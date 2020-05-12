@@ -27,16 +27,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/DeleteArticle">
-                    Del
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/ModifyArticle">
-                    Mod
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/">
                     Home
                 </a>
@@ -67,7 +57,10 @@
                 <td th:text="${#dates.format(article.dateOfModify, 'yyyy-MM-dd')}">  </td>
                 <td><button type="submit" th:name="ISBN" th:value="${article.ISBN}"  class="btn btn-primary">faszkalács</button></td>
                 <td><button type="submit" th:href="@{'/GetArticle/?ISBN=' + ${article.ISBN}}" class="btn btn-primary">buzeusz</button></td>
-                <td><a th:href="@{'/GetArticle/Delete?ISBN=' + ${article.ISBN}}" th:name="ISBN" th:value="${article.ISBN}" class="btn btn-primary">rák</a></td>
+                <td><a th:href="@{'/GetArticle/Delete?ISBN=' + ${article.ISBN}}"
+                       th:name="ISBN" th:value="${article.ISBN}" class="btn btn-primary">rák</a></td>
+                    <td><a th:href="@{'/GetArticle/Open?ISBN=' + ${article.ISBN}}"
+                           th:name="ISBN" th:value="${article.ISBN}" class="btn btn-primary">Open Article</a></td>
                 </form>
             </tr>
 
