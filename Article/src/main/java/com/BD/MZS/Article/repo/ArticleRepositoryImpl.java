@@ -18,6 +18,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     @PostConstruct
     public void init() {
         articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(0).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(1).build());
     }
 
     @Override
@@ -39,7 +40,10 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     public void deleteByID(int isbn){
         for(ArticleDTO article : articles){
             if(article.getISBN() == isbn){
+                System.out.println(articles);
                 articles.remove(article);
+                System.out.println(articles);
+                break;
             }
         }
     }
