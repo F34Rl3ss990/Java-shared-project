@@ -59,7 +59,15 @@ public class ArticleController {
     }
     @PostMapping(value="/GetArticle")
     public ModelAndView postArticles(@RequestParam(value="ISBN") int ISBN){
-        return new ModelAndView("redirect:/ModifyArticle?ISBN="+ISBN);
+            return new ModelAndView("redirect:/ModifyArticle?ISBN=" + ISBN);
+    }
+
+    @GetMapping(value="/GetArticle/Delete{ISBN}")
+    public ModelAndView postArticlez(@RequestParam(value="ISBN") int ISBN){
+        articleService.deleteByID(ISBN);
+        System.out.println("asdasdas");
+        return new ModelAndView("redirect:/");
+
     }
     @GetMapping(value="/ModifyArticle{ISBN}")
     public ModelAndView modifyArticles(@RequestParam(value="ISBN") @PathVariable int ISBN){
