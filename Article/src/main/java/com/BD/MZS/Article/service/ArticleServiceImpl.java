@@ -39,10 +39,6 @@ public class ArticleServiceImpl implements ArticleService {
             articleRepository.modByID(articleDTO);
     }
     @Override
-    public List<ArticleDTO> getAllSortedByArticle(){
-       return articleRepository.getAllSortedByArticle();
-    }
-    @Override
     public List<ArticleDTO> getAllSortedByAuthor(){
        return articleRepository.getAllSortedByAuthor();
     }
@@ -66,4 +62,6 @@ public class ArticleServiceImpl implements ArticleService {
     public List<ArticleDTO> search(String searchField){
       return  articleRepository.search(searchField);
     }
+
+
 }

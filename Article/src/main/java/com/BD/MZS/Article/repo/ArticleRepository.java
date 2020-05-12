@@ -10,7 +10,6 @@ public interface ArticleRepository {
     void deleteByID(int isbn);
     ArticleDTO getByID(int isbn);
     void modByID(ArticleDTO articleDTO);
-    List<ArticleDTO> getAllSortedByArticle();
     List<ArticleDTO> getAllSortedByAuthor();
     List<ArticleDTO> getAllSortedByDateOfCreate();
     List<ArticleDTO> getAllSortedByDateOfModify();

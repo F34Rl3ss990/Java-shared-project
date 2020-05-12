@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class ArticleRepositoryImpl implements ArticleRepository {
-    private final List<ArticleDTO> articles = new ArrayList<>();
+    private  List<ArticleDTO> articles = new ArrayList<>();
 
     @PostConstruct
     public void init() {
@@ -24,7 +24,6 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     @Override
     public List<ArticleDTO> getAll() {
         articles.sort(Comparator.comparing(ArticleDTO::getDateOfCreate));
-        System.out.println(articles);
         return articles;
     }
     @Override
@@ -40,9 +39,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     public void deleteByID(int isbn){
         for(ArticleDTO article : articles){
             if(article.getISBN() == isbn){
-                System.out.println(articles);
                 articles.remove(article);
-                System.out.println(articles);
                 break;
             }
         }
@@ -60,14 +57,14 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
     @Override
     public void save(ArticleDTO articleDTO) {
-        System.out.println(articles);
         articles.add(articleDTO);
-        System.out.println(articles);
     }
 
     private List<ArticleDTO> getArticleDTOS(Comparator<ArticleDTO> comparing) {
         List<ArticleDTO> articleTest = new ArrayList<>();
-        articleTest = articles;
+        for(ArticleDTO article : articles){
+            articleTest.add(article);
+        }
         articles.sort(comparing);
         if(!articles.equals(articleTest)){
             return articles;
@@ -75,10 +72,6 @@ public class ArticleRepositoryImpl implements ArticleRepository {
             articles.sort(comparing.reversed());
             return articles;
         }
-    }
-    @Override
-    public List<ArticleDTO> getAllSortedByArticle() {
-        return getArticleDTOS(Comparator.comparing(ArticleDTO::getArticle));
     }
     @Override
     public List<ArticleDTO> getAllSortedByAuthor() {
@@ -94,6 +87,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     }
     @Override
     public List<ArticleDTO> getAllSortedByISBN() {
+        System.out.println("FDLSKfLÉFLÉKSDLÉFKSDLÉF");
         return getArticleDTOS(Comparator.comparing(ArticleDTO::getISBN));
     }
     @Override
