@@ -3,6 +3,8 @@ package com.BD.MZS.Article.service;
 import com.BD.MZS.Article.controller.dto.ArticleDTO;
 import com.BD.MZS.Article.repo.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -39,10 +41,6 @@ public class ArticleServiceImpl implements ArticleService {
             articleRepository.modByID(articleDTO);
     }
     @Override
-    public List<ArticleDTO> getAllSortedByArticle(){
-       return articleRepository.getAllSortedByArticle();
-    }
-    @Override
     public List<ArticleDTO> getAllSortedByAuthor(){
        return articleRepository.getAllSortedByAuthor();
     }
@@ -66,4 +64,12 @@ public class ArticleServiceImpl implements ArticleService {
     public List<ArticleDTO> search(String searchField){
       return  articleRepository.search(searchField);
     }
+    @Override
+    public Page<ArticleDTO> findPaginated(Pageable pageable,String cikk){
+        return articleRepository.findPaginated(pageable, cikk);
+    }
+
+
+
+
 }
