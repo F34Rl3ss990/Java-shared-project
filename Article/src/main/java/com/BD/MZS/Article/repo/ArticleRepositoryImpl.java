@@ -2,12 +2,15 @@ package com.BD.MZS.Article.repo;
 
 import com.BD.MZS.Article.controller.dto.ArticleDTO;
 import org.springframework.stereotype.Component;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -15,10 +18,24 @@ import java.util.stream.Collectors;
 public class ArticleRepositoryImpl implements ArticleRepository {
     private  List<ArticleDTO> articles = new ArrayList<>();
 
+
     @PostConstruct
     public void init() {
         articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(0).build());
         articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(1).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(2).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(3).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(4).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(5).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(6).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(7).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(8).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(9).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(10).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(11).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(12).build());
+        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(13).build());
+
     }
 
     @Override
@@ -102,4 +119,39 @@ public class ArticleRepositoryImpl implements ArticleRepository {
                 filter(contain).collect(Collectors.toList());
         return hasArticleList;
     }
+    public Page<ArticleDTO> findPaginated(Pageable pageable, String cikk) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<ArticleDTO> list;
+        if(cikk!=null) {
+            if (this.search(cikk).size() < startItem) {
+                list = Collections.emptyList();
+            } else {
+                int toIndex = Math.min(startItem + pageSize, this.search(cikk).size());
+                list = this.search(cikk).subList(startItem, toIndex);
+            }
+
+
+            Page<ArticleDTO> articlePage
+                    = new PageImpl<ArticleDTO>(list, PageRequest.of(currentPage, pageSize), this.search(cikk).size());
+
+        return articlePage;
+        } else {
+            if (articles.size() < startItem) {
+                list = Collections.emptyList();
+            } else {
+                int toIndex = Math.min(startItem + pageSize, articles.size());
+                list = articles.subList(startItem, toIndex);
+            }
+
+
+            Page<ArticleDTO> articlePage
+                    = new PageImpl<ArticleDTO>(list, PageRequest.of(currentPage, pageSize), articles.size());
+
+            return articlePage;
+        }
+    }
+
+
 }
