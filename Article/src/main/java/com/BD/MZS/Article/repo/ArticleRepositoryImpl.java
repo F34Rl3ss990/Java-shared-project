@@ -101,6 +101,5 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         List<ArticleDTO> hasArticleList = articles.stream().
                 filter(contain).collect(Collectors.toList());
         return hasArticleList;
-
     }
 }
