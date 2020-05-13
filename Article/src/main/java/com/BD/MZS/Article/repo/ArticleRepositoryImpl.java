@@ -21,20 +21,20 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
     @PostConstruct
     public void init() {
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(0).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(1).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(2).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(3).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(4).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(5).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(6).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(7).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(8).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(9).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(10).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(11).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(12).build());
-        articles.add(ArticleDTO.builder().Article("ZsakFos").Title("FosZsák").Author("buzigeci").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(13).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(0).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(1).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(2).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(3).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(4).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(5).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(6).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(7).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(8).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(9).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(10).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(11).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(12).build());
+        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(13).build());
 
     }
 
