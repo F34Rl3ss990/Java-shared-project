@@ -32,28 +32,20 @@ public class ArticleController {
 
     @GetMapping(value = "/")
     public ModelAndView getRoot() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("MainArticle");
-        return mav;
+        return new ModelAndView("MainArticle");
     }
 
     @GetMapping(value = "/AddArticle")
     public ModelAndView addArticleForm() {
-        ArticleDTO.setDateofCreate(new Date());
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("AddArticle");
-        mav.addObject("articleDTO", new ArticleDTO());
-        return mav;
+        ArticleDTO.setDateCreate(new Date());
+        return new ModelAndView("AddArticle").addObject("articleDTO", new ArticleDTO());
     }
 
     @PostMapping(value = "/AddArticle")
     public ModelAndView AddArticle(@Valid ArticleDTO articleDTO,
                                    BindingResult bindingResult) {
-        ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            mav.setViewName("AddArticle");
-            mav.addObject("articleDTO", articleDTO);
-            return mav;
+            return new ModelAndView("AddArticle").addObject("articleDTO", articleDTO);
         }
         articleService.add(articleDTO);
         ArticleDTO.counter();
@@ -77,18 +69,9 @@ public class ArticleController {
                     .collect(Collectors.toList());
             mav.addObject("pageNumbers", pageNumbers);
         }
-
         mav.setViewName("GetArticle");
         return mav;
     }
-    @PostMapping(value = "/GetArticle/Search")
-    public ModelAndView modifyArticlePost2(@RequestParam (value="cikk") String cikk) {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("Articles", articleService.search(cikk));
-        mav.setViewName("GetArticle");
-        return mav;
-    }
-
 
     @PostMapping(value = "/GetArticle")
     public ModelAndView modifyArticlePost(@RequestParam(required = false,value = "ISBN") int ISBN) {
@@ -98,80 +81,27 @@ public class ArticleController {
     @GetMapping(value = "/GetArticle/Delete{ISBN}")
     public ModelAndView deleteArticle(@RequestParam(value = "ISBN") int ISBN) {
         articleService.deleteByID(ISBN);
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("MainArticle");
-        return mav;
+        return new ModelAndView("MainArticle");
     }
 
     @GetMapping(value = "/GetArticle/Open{ISBN}")
     public ModelAndView openArticle(@RequestParam(value = "ISBN") int ISBN) {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("article", articleService.getByID(ISBN));
-        mav.setViewName("OpenArticle");
-        return mav;
-
+        return new ModelAndView("OpenArticle").addObject("article", articleService.getByID(ISBN));
     }
 
     @GetMapping(value = "/ModifyArticle{ISBN}")
     public ModelAndView getModifyArticleForm(@RequestParam(value = "ISBN") @PathVariable int ISBN) {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("ModifyArticle");
-        mav.addObject("article", articleService.getByID(ISBN));
-        return mav;
+        return new ModelAndView("ModifyArticle").addObject("article", articleService.getByID(ISBN));
     }
 
     @PostMapping(value = "/ModifyArticle{ISBN}")
     public ModelAndView modifyPostArticles(@RequestParam(value = "ISBN") @PathVariable int ISBN,
                                            @Valid ArticleDTO article, BindingResult bindingResult) {
-        ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            mav.setViewName("ModifyArticle");
-            mav.addObject("article", article);
-            return mav;
+            return new ModelAndView("ModifyArticle").addObject("article", article);
         }
         articleService.modByID(article);
         return new ModelAndView("redirect:/GetArticle");
     }
-
-    @GetMapping(value = "/GetArticle/SortByAuthor")
-    public ModelAndView sortArticlesByAuthor() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("GetArticle");
-        mav.addObject("Articles", articleService.getAllSortedByAuthor());
-        return mav;
-    }
-
-    @GetMapping(value = "/GetArticle/SortByISBN")
-    public ModelAndView sortArticlesByISBN() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("GetArticle");
-        mav.addObject("Articles", articleService.getAllSortedByISBN());
-        return mav;
-    }
-
-    @GetMapping(value = "/GetArticle/SortByTitle")
-    public ModelAndView sortArticlesByTitle() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("GetArticle");
-        mav.addObject("Articles", articleService.getAllSortedByTitle());
-        return mav;
-    }
-
-    @GetMapping(value = "/GetArticle/SortByCreated")
-    public ModelAndView sortArticlesByCreated() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("GetArticle");
-        mav.addObject("Articles", articleService.getAllSortedByDateOfCreate());
-        return mav;
-    }
-
-    @GetMapping(value = "/GetArticle/SortByLastModified")
-    public ModelAndView sortArticlesByLastModified() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("GetArticle");
-        mav.addObject("Articles", articleService.getAllSortedByDateOfModify());
-        return mav;
-    }
-
 
 }

@@ -56,7 +56,7 @@
                     <div class="alert alert-danger" th:if="${#fields.hasErrors('Title')}" th:errors="*{Title}"></div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4">Article</label>
+                    <label class="col-md-4">Article:</label>
                     <textarea class="form-control" rows="3"
                               th:field="*{Article}"></textarea>
                     <div class="alert alert-danger" th:if="${#fields.hasErrors('Article')}" th:errors="*{Article}"></div>

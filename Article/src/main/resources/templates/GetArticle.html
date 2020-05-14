@@ -118,7 +118,7 @@
         <tr th:each="article, iStat : ${articlePage.content}"
             th:style="${iStat.odd}? 'font-weight: bold;'"
             th:alt-title="${iStat.even}? 'even' : 'odd'">
-            <form class="" th:action="@{/GetArticle/}" method="post" th:object="${ArticleDTO}">
+            <form class="" th:action="@{/GetArticle/}" method="post" th:object="${article}">
                 <td th:text="${article.Author}"></td>
                 <td th:text="${article.ISBN}"></td>
                 <td th:text="${article.Title}"></td>

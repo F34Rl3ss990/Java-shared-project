@@ -33,7 +33,7 @@ public class ArticleDTO {
         counter++;
     }
     private static Date dateCreate;
-    public static Date setDateofCreate(Date date){
+    public static Date setDateCreate(Date date){
         return dateCreate= date;
     }
 
