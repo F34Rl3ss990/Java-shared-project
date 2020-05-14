@@ -1,41 +1,44 @@
 package com.BD.MZS.Article.controller.dto;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Data
 @Builder
-@NoArgsConstructor
+@AllArgsConstructor
 public class ArticleDTO {
-    @NotBlank
+    @NotNull(message = "Name cannot be null.")
+    @Length(min = 10)
     private String Author;
-    @NotBlank
+    @NotNull(message = "Title cannot be null.")
+    @Length(min = 10)
     private String Title;
-    @NotBlank
-    private Date dateOfCreate;
-    @NotBlank
+    @Setter
+    private Date dateOfCreate=dateCreate;
     private Date dateOfModify;
-    @NotBlank
+
+    @NotNull(message = "Article cannot be null.")
+    @Length(min = 100)
     private String Article;
-    @NotBlank
-    private static int ISBN=0;
 
-    public ArticleDTO(String Author, String Title, String Article){
-        this.Author = Author;
-        this.Title = Title;
-        this.dateOfCreate = new Date();
+    private int ISBN=counter;
+    private static int counter=0;
+    public static void counter(){
+        counter++;
+    }
+    private static Date dateCreate;
+    public static Date setDateCreate(Date date){
+        return dateCreate= date;
+    }
+
+    public ArticleDTO(){
         this.dateOfModify = new Date();
-        this.Article = Article;
-        this.ISBN +=1;
     }
-
-    public int getISBN(){
-        return ISBN;
-    }
-
 
 }
