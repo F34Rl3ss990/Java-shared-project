@@ -42,7 +42,6 @@ public class ArticleController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("AddArticle");
         mav.addObject("ArticleDTO", new ArticleDTO());
-        ArticleDTO.counter();
         ArticleDTO.setDateofCreate(new Date());
         return mav;
     }
@@ -54,6 +53,7 @@ public class ArticleController {
             return new ModelAndView("AddArticle");
         }
         articleService.add(articleDTO);
+        ArticleDTO.counter();
         return new ModelAndView("redirect:/GetArticle");
     }
 
