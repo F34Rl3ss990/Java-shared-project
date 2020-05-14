@@ -20,6 +20,9 @@ public class ArticleDTO {
     private Date dateOfCreate=dateCreate;
     @Setter
     private Date dateOfModify;
+    private String searchText;
+    private String fieldName;
+    private String cikk;
 
     @NotNull(message = "Article cannot be null.")
     private String Article;
@@ -37,4 +40,9 @@ public class ArticleDTO {
         return dateCreate= date;
     }
 
+
+
+    public String getSearchText() {
+        return searchText;
+    }
 }

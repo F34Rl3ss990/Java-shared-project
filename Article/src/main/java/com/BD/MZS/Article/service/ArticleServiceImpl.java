@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+
 import java.util.List;
 
 @Component
@@ -27,8 +28,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void deleteByID(int isbn) {
-        articleRepository.deleteByID(isbn);
+    public ArticleDTO deleteByID(int isbn) {
+        return articleRepository.deleteByID(isbn);
     }
 
     @Override
@@ -65,8 +66,8 @@ public class ArticleServiceImpl implements ArticleService {
       return  articleRepository.search(searchField);
     }
     @Override
-    public Page<ArticleDTO> findPaginated(Pageable pageable,String cikk){
-        return articleRepository.findPaginated(pageable, cikk);
+    public Page<ArticleDTO> findPaginated(Pageable pageable, String cikk, String filterName, String ascDesc){
+        return articleRepository.findPaginated(pageable, cikk, filterName, ascDesc);
     }
 
 

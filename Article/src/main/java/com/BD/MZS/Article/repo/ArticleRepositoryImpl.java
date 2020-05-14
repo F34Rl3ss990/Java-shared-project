@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Component
-public class ArticleRepositoryImpl implements ArticleRepository {
+public class  ArticleRepositoryImpl implements ArticleRepository {
     private  List<ArticleDTO> articles = new ArrayList<>();
 
 
@@ -53,13 +53,14 @@ public class ArticleRepositoryImpl implements ArticleRepository {
      return null;
     }
     @Override
-    public void deleteByID(int isbn){
+    public ArticleDTO deleteByID(int isbn){
         for(ArticleDTO article : articles){
             if(article.getISBN() == isbn){
                 articles.remove(article);
                 break;
             }
         }
+        return null;
     }
     @Override
     public void modByID(ArticleDTO articleDTO){
@@ -119,7 +120,10 @@ public class ArticleRepositoryImpl implements ArticleRepository {
                 filter(contain).collect(Collectors.toList());
         return hasArticleList;
     }
-    public Page<ArticleDTO> findPaginated(Pageable pageable, String cikk) {
+
+
+
+    public Page<ArticleDTO> findPaginated(Pageable pageable, String cikk, String filterName, String ascDesc) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;

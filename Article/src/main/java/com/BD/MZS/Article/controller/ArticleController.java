@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
 
+
+import javax.annotation.processing.Completions;
 import javax.naming.Binding;
 import javax.validation.Valid;
 import java.util.Date;
@@ -23,6 +25,7 @@ import java.util.stream.IntStream;
 public class ArticleController {
 
     private ArticleService articleService;
+
 
     @Autowired
     public void setEntityService(ArticleService articleService) {
@@ -60,12 +63,19 @@ public class ArticleController {
     @GetMapping(value = "/GetArticle")
     public ModelAndView getArticles(@RequestParam("page") Optional<Integer> page,
                                     @RequestParam("size") Optional<Integer> size,
+                                    @RequestParam("filterName") String filterName,
                                     @RequestParam(required = false, value="cikk")String cikk,
-                                    @RequestParam(required = false, value="ezegyteszt")String ezegyteszt) {
+                                    @RequestParam("ascDesc") String ascDesc,
+                                    @RequestParam(required = false, value="ezegyteszt")String ezegyteszt,
+                                    @RequestParam(value = "sort",required = false)String sort) {
         ModelAndView mav = new ModelAndView();
+        if(sort=="author"){
+            return new ModelAndView("redirect:/AddArticle");
+        }
+
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(5);
-        Page<ArticleDTO> articlePage = articleService.findPaginated(PageRequest.of(currentPage - 1, pageSize), cikk);
+        Page<ArticleDTO> articlePage = articleService.findPaginated(PageRequest.of(currentPage - 1, pageSize), cikk, filterName, ascDesc );
         int totalPages = articlePage.getTotalPages();
         mav.addObject("articlePage", articlePage);
         if (totalPages > 0) {
@@ -84,6 +94,13 @@ public class ArticleController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("Articles", articleService.search(cikk));
         mav.setViewName("GetArticle");
+        return mav;
+    }
+    @GetMapping(value = "/GetArticleFiltered")
+    public ModelAndView getArticlesFiletered() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("GetArticle");
+        mav.addObject("Articles", articleService.listAll());
         return mav;
     }
 
