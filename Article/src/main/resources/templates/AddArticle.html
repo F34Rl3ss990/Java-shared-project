@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <style>
+        .fieldError {
+            background-color: red;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -42,31 +47,30 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <form class="" action="" method="post" th:object="${ArticleDTO}">
+            <form method="post" th:object="${articleDTO}">
                 <div class="form-group">
                     <label class="col-md-4">Author name:</label>
-                    <input type="text" class="form-control" placeholder="Type the name..."
-                    th:field="*{Author}" />
-                    <span th:if="${#fields.hasErrors('Author')}" th:errors="*{Author}">Full name error</span>
+                    <input type="text" class="form-control" placeholder="Type the name..." th:field="*{Author}"/>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('Author')}" th:errors="*{Author}"></div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4">Title:</label>
-                    <input type="text" class="form-control" placeholder=""
-                       th:field="*{Title}" />
-                    <span th:if="${#fields.hasErrors('Title')}" th:errors="*{Title}">Full name error</span>
+                    <input type="text" class="form-control" placeholder="Type the title..." th:field="*{Title}" />
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('Title')}" th:errors="*{Title}"></div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4">Article</label>
-                    <textarea class="form-control" rows="3"
-                        th:field="*{Article}"></textarea>
-                    <span th:if="${#fields.hasErrors('Article')}" th:errors="*{Article}">Full name error</span>
+                    <textarea class="form-control" rows="3" th:field="*{Article}" placeholder="Type the article..."></textarea>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('Article')}" th:errors="*{Article}"></div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" name="action" value="" class="btn btn-primary">Add article</button>
+                    <button type="submit" name="action" value="AddArticle" class="btn btn-primary">Add article</button>
                 </div>
             </form>
         </div>
     </div>
+
 </div>
+
 </body>
 </html>

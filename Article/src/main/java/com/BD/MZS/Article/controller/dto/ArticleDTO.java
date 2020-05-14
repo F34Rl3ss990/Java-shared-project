@@ -1,6 +1,7 @@
 package com.BD.MZS.Article.controller.dto;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
@@ -13,15 +14,17 @@ import java.util.Date;
 @AllArgsConstructor
 public class ArticleDTO {
     @NotNull(message = "Name cannot be null.")
+    @Length(min = 10)
     private String Author;
     @NotNull(message = "Title cannot be null.")
+    @Length(min = 10)
     private String Title;
     @Setter
     private Date dateOfCreate=dateCreate;
-    @Setter
     private Date dateOfModify;
 
     @NotNull(message = "Article cannot be null.")
+    @Length(min = 100)
     private String Article;
 
     private int ISBN=counter;
@@ -29,12 +32,13 @@ public class ArticleDTO {
     public static void counter(){
         counter++;
     }
-    public ArticleDTO(){
-        this.dateOfModify = new Date();
-    }
     private static Date dateCreate;
     public static Date setDateofCreate(Date date){
         return dateCreate= date;
+    }
+
+    public ArticleDTO(){
+        this.dateOfModify = new Date();
     }
 
 }

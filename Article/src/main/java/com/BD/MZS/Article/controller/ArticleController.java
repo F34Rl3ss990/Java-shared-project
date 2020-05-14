@@ -39,18 +39,21 @@ public class ArticleController {
 
     @GetMapping(value = "/AddArticle")
     public ModelAndView addArticleForm() {
+        ArticleDTO.setDateofCreate(new Date());
         ModelAndView mav = new ModelAndView();
         mav.setViewName("AddArticle");
-        mav.addObject("ArticleDTO", new ArticleDTO());
-        ArticleDTO.setDateofCreate(new Date());
+        mav.addObject("articleDTO", new ArticleDTO());
         return mav;
     }
 
     @PostMapping(value = "/AddArticle")
     public ModelAndView AddArticle(@Valid ArticleDTO articleDTO,
                                    BindingResult bindingResult) {
+        ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("AddArticle");
+            mav.setViewName("AddArticle");
+            mav.addObject("articleDTO", articleDTO);
+            return mav;
         }
         articleService.add(articleDTO);
         ArticleDTO.counter();
@@ -76,7 +79,6 @@ public class ArticleController {
         }
 
         mav.setViewName("GetArticle");
-     //   mav.addObject("Articles", articleService.listAll());
         return mav;
     }
     @PostMapping(value = "/GetArticle/Search")
@@ -121,8 +123,11 @@ public class ArticleController {
     @PostMapping(value = "/ModifyArticle{ISBN}")
     public ModelAndView modifyPostArticles(@RequestParam(value = "ISBN") @PathVariable int ISBN,
                                            @Valid ArticleDTO article, BindingResult bindingResult) {
+        ModelAndView mav = new ModelAndView();
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("ModifyArticle{ISBN}");
+            mav.setViewName("ModifyArticle");
+            mav.addObject("article", article);
+            return mav;
         }
         articleService.modByID(article);
         return new ModelAndView("redirect:/GetArticle");
