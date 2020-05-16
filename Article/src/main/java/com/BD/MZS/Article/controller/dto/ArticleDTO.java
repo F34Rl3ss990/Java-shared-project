@@ -20,24 +20,27 @@ public class ArticleDTO {
     @Length(min = 10)
     private String Title;
     @Setter
-    private Date dateOfCreate=dateCreate;
+    private Date dateOfCreate = dateCreate;
     private Date dateOfModify;
 
     @NotNull(message = "Article cannot be null.")
     @Length(min = 100)
     private String Article;
 
-    private int ISBN=counter;
-    private static int counter=0;
-    public static void counter(){
+    private int ISBN = counter;
+    private static int counter = 0;
+
+    public static void counter() {
         counter++;
     }
+
     private static Date dateCreate;
-    public static Date setDateCreate(Date date){
-        return dateCreate= date;
+
+    public static Date setDateCreate(Date date) {
+        return dateCreate = date;
     }
 
-    public ArticleDTO(){
+    public ArticleDTO() {
         this.dateOfModify = new Date();
     }
 

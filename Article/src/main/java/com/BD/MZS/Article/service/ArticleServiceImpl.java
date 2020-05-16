@@ -17,28 +17,29 @@ public class ArticleServiceImpl implements ArticleService {
     public void setEntityRepository(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
     }
+
     @Override
     public void add(ArticleDTO articleDTO) {
         articleRepository.save(articleDTO);
     }
+
     @Override
     public void deleteByID(int isbn) {
         articleRepository.deleteByID(isbn);
     }
+
     @Override
     public ArticleDTO getByID(int isbn) {
-       return articleRepository.getByID(isbn);
+        return articleRepository.getByID(isbn);
     }
+
     @Override
     public void modByID(ArticleDTO articleDTO) {
-            articleRepository.modByID(articleDTO);
+        articleRepository.modByID(articleDTO);
     }
+
     @Override
-    public Page<ArticleDTO> findPaginated(Pageable pageable,String cikk, String filter, String ascOrDesc){
-        return articleRepository.findPaginated(pageable, cikk, filter, ascOrDesc);
+    public Page<ArticleDTO> findPaginated(Pageable pageable, String article, String filter, String ascOrDesc) {
+        return articleRepository.findPaginated(pageable, article, filter, ascOrDesc);
     }
-
-
-
-
 }

@@ -55,9 +55,9 @@ public class ArticleController {
     @GetMapping(value = "/GetArticle")
     public ModelAndView getArticles(@RequestParam("page") Optional<Integer> page,
                                     @RequestParam("size") Optional<Integer> size,
-                                    @RequestParam(required = false, value="article")String article,
-                                    @RequestParam(required = false, value="filter")String filter,
-                                    @RequestParam(required = false, value="ascOrDesc")String ascOrDesc) {
+                                    @RequestParam(required = false, value = "article") String article,
+                                    @RequestParam(required = false, value = "filter") String filter,
+                                    @RequestParam(required = false, value = "ascOrDesc") String ascOrDesc) {
         ModelAndView mav = new ModelAndView();
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(5);
@@ -75,7 +75,7 @@ public class ArticleController {
     }
 
     @PostMapping(value = "/GetArticle")
-    public ModelAndView modifyArticlePost(@RequestParam(required = false,value = "ISBN") int ISBN) {
+    public ModelAndView modifyArticlePost(@RequestParam(required = false, value = "ISBN") int ISBN) {
         return new ModelAndView("redirect:/ModifyArticle?ISBN=" + ISBN);
     }
 

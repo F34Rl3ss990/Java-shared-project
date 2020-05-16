@@ -17,24 +17,6 @@ import java.util.stream.Collectors;
 public class ArticleRepositoryImpl implements ArticleRepository {
     private List<ArticleDTO> articles = new ArrayList<>();
 
-    @PostConstruct
-    public void init() {
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(0).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(1).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(2).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(3).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(4).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(5).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(6).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(7).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(8).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(9).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(10).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(11).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(12).build());
-        articles.add(ArticleDTO.builder().Article("sad").Title("dsa").Author("asd").dateOfCreate(new Date()).dateOfModify(new Date()).ISBN(13).build());
-    }
-
     @Override
     public ArticleDTO getByID(int isbn) {
         for (ArticleDTO article : articles) {
@@ -147,23 +129,23 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         return hasArticleList;
     }
 
-    public Page<ArticleDTO> findPaginated(Pageable pageable, String cikk, String filter, String ascOrDesc) {
+    public Page<ArticleDTO> findPaginated(Pageable pageable, String article, String filter, String ascOrDesc) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
         List<ArticleDTO> list;
-        if(filter!= null && ascOrDesc!= null) {
+        if (filter != null && ascOrDesc != null) {
             sort(filter, ascOrDesc);
         }
-        if (cikk != null) {
-            if (search(cikk).size() < startItem) {
+        if (article != null) {
+            if (search(article).size() < startItem) {
                 list = Collections.emptyList();
             } else {
-                int toIndex = Math.min(startItem + pageSize, this.search(cikk).size());
-                list = search(cikk).subList(startItem, toIndex);
+                int toIndex = Math.min(startItem + pageSize, this.search(article).size());
+                list = search(article).subList(startItem, toIndex);
             }
             Page<ArticleDTO> articlePage
-                    = new PageImpl<ArticleDTO>(list, PageRequest.of(currentPage, pageSize), search(cikk).size());
+                    = new PageImpl<ArticleDTO>(list, PageRequest.of(currentPage, pageSize), search(article).size());
             return articlePage;
         } else {
             if (articles.size() < startItem) {

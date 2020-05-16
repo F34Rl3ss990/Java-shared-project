@@ -46,20 +46,21 @@
                 <div class="form-group">
                     <label class="col-md-4">Author name:</label>
                     <input type="text" class="form-control" placeholder="Type the name..."
-                           th:field="*{Author}" />
+                           th:field="*{Author}"/>
                     <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}" th:errors="*{Author}"></div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4">Title:</label>
                     <input type="text" class="form-control" placeholder=""
-                           th:field="*{Title}" />
+                           th:field="*{Title}"/>
                     <div class="alert alert-danger" th:if="${#fields.hasErrors('Title')}" th:errors="*{Title}"></div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4">Article:</label>
                     <textarea class="form-control" rows="3"
                               th:field="*{Article}"></textarea>
-                    <div class="alert alert-danger" th:if="${#fields.hasErrors('Article')}" th:errors="*{Article}"></div>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('Article')}"
+                         th:errors="*{Article}"></div>
                 </div>
                 <div class="form-group">
                     <button type="submit" name="action" value="" class="btn btn-primary">Modify</button>

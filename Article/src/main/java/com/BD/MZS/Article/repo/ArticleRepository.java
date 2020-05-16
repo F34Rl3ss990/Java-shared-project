@@ -8,8 +8,12 @@ import java.util.List;
 
 public interface ArticleRepository {
     void save(ArticleDTO articleDTO);
+
     void deleteByID(int isbn);
+
     ArticleDTO getByID(int isbn);
+
     void modByID(ArticleDTO articleDTO);
-    Page<ArticleDTO> findPaginated(Pageable pageable, String cikk, String filter, String ascOrDesc);
+
+    Page<ArticleDTO> findPaginated(Pageable pageable, String article, String filter, String ascOrDesc);
 }

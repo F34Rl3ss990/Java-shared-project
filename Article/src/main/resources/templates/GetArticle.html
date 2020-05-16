@@ -18,7 +18,7 @@
     <style>
         .col-sm-2 {
             padding-right: 0px !important;
-            padding-bottom:5px !important;
+            padding-bottom: 5px !important;
         }
 
         .form-group {
@@ -29,14 +29,17 @@
         .mb-4 {
             margin-bottom: 5px !important;
         }
-        .form-control{
+
+        .form-control {
             padding-left: 8px !important;
         }
-        td{
+
+        td {
             text-align: center;
             valign: center;
         }
-        th{
+
+        th {
             text-align: center;
             valign: center;
         }
@@ -88,16 +91,17 @@
             </div>
         </div>
         <div class="row">
-        <div class="col-sm-2">
-            <select class="form-control" th:name="size">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-            </select>
-        </div>
-            <div >
-            <button type="submit" name="action" value="" class="btn btn-primary" style="margin-left: 10px"  >Search</button>
+            <div class="col-sm-2">
+                <select class="form-control" th:name="size">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit" name="action" value="" class="btn btn-primary" style="margin-left: 10px">Search
+                </button>
             </div>
         </div>
 
@@ -125,13 +129,16 @@
                 <td th:text="${#dates.format(article.dateOfCreate, 'yyyy-MM-dd')}"></td>
                 <td th:text="${#dates.format(article.dateOfModify, 'yyyy-MM-dd')}"></td>
                 <td>
-                    <button type="submit" th:name="ISBN" th:value="${article.ISBN}" class="btn btn-primary" style="padding:5px !important;">Modify
+                    <button type="submit" th:name="ISBN" th:value="${article.ISBN}" class="btn btn-primary"
+                            style="padding:5px !important;">Modify
                     </button>
                 </td>
                 <td><a th:href="@{'/GetArticle/Delete?ISBN=' + ${article.ISBN}}"
-                       th:name="ISBN" th:value="${article.ISBN}" class="btn btn-primary" style="padding:5px !important;">Delete</a></td>
+                       th:name="ISBN" th:value="${article.ISBN}" class="btn btn-primary"
+                       style="padding:5px !important;">Delete</a></td>
                 <td><a th:href="@{'/GetArticle/Open?ISBN=' + ${article.ISBN}}"
-                       th:name="ISBN" th:value="${article.ISBN}" class="btn btn-primary" style="padding:5px !important;">Open Article</a></td>
+                       th:name="ISBN" th:value="${article.ISBN}" class="btn btn-primary"
+                       style="padding:5px !important;">Open Article</a></td>
             </form>
         </tr>
         </tbody>
@@ -140,7 +147,7 @@
         <ul class="pagination">
             <div th:if="${articlePage.totalPages > 0}" class="pagination"
                  th:each="pageNumber : ${pageNumbers}">
-                <li class="page-item"><a class="page-link"  th:href="@{/GetArticle(size=${articlePage.size},
+                <li class="page-item"><a class="page-link" th:href="@{/GetArticle(size=${articlePage.size},
                  page=${pageNumber})}" th:text=${pageNumber}></a></li>
 
             </div>

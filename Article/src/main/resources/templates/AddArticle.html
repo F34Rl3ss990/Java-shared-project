@@ -55,13 +55,15 @@
                 </div>
                 <div class="form-group">
                     <label class="col-md-4">Title:</label>
-                    <input type="text" class="form-control" placeholder="Type the title..." th:field="*{Title}" />
+                    <input type="text" class="form-control" placeholder="Type the title..." th:field="*{Title}"/>
                     <div class="alert alert-danger" th:if="${#fields.hasErrors('Title')}" th:errors="*{Title}"></div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4">Article</label>
-                    <textarea class="form-control" rows="3" th:field="*{Article}" placeholder="Type the article..."></textarea>
-                    <div class="alert alert-danger" th:if="${#fields.hasErrors('Article')}" th:errors="*{Article}"></div>
+                    <textarea class="form-control" rows="3" th:field="*{Article}"
+                              placeholder="Type the article..."></textarea>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('Article')}"
+                         th:errors="*{Article}"></div>
                 </div>
                 <div class="form-group">
                     <button type="submit" name="action" value="AddArticle" class="btn btn-primary">Add article</button>
