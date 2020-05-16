@@ -41,13 +41,12 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <form class="" action="" method="post" th:object="${article}">
-                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}" th:errors="*{*}"></div>
+            <form class="" action="" method="post" th:object="${articleDTO}">
                 <div class="form-group">
                     <label class="col-md-4">Author name:</label>
                     <input type="text" class="form-control" placeholder="Type the name..."
                            th:field="*{Author}"/>
-                    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}" th:errors="*{Author}"></div>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('Author')}" th:errors="*{Author}"></div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4">Title:</label>

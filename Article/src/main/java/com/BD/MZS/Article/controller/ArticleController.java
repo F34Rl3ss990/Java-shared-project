@@ -92,16 +92,16 @@ public class ArticleController {
 
     @GetMapping(value = "/ModifyArticle{ISBN}")
     public ModelAndView getModifyArticleForm(@RequestParam(value = "ISBN") @PathVariable int ISBN) {
-        return new ModelAndView("ModifyArticle").addObject("article", articleService.getByID(ISBN));
+        return new ModelAndView("ModifyArticle").addObject("articleDTO", articleService.getByID(ISBN));
     }
 
     @PostMapping(value = "/ModifyArticle{ISBN}")
     public ModelAndView modifyPostArticles(@RequestParam(value = "ISBN") @PathVariable int ISBN,
-                                           @Valid ArticleDTO article, BindingResult bindingResult) {
+                                           @ModelAttribute @Valid ArticleDTO articleDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("ModifyArticle").addObject("article", article);
+            return new ModelAndView("ModifyArticle").addObject("articleDTO", articleDTO);
         }
-        articleService.modByID(article);
+        articleService.modByID(articleDTO);
         return new ModelAndView("redirect:/GetArticle");
     }
 
